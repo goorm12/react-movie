@@ -10,7 +10,7 @@ const MovieItem = ({ movie }: MovieProps) => {
       <img
         src={movie.medium_cover_image}
         alt={movie.title}
-        className="w-full h-auto object-cover"
+        className="w-full h-auto object-cover transition-transform duration-300 ease-in-out hover:scale-105"
       />
 
       <span className="truncate ...">{movie.title}</span>
