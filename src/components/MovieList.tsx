@@ -1,6 +1,7 @@
 import MovieItem from "./MovieItem";
 import { useEffect, useState } from "react";
 import { URL } from "../constants/URL";
+import axios from "axios";
 export interface Movie {
   id: number;
   medium_cover_image: string;
@@ -14,9 +15,12 @@ const MovieList = () => {
 
   useEffect(() => {
     const movieFetch = async () => {
-      const response = await fetch(`${URL}&limit=4&page=${page}`);
-      const data = await response.json();
-      setMovieData(data.data.movies);
+      try {
+        const response = await axios.get(`${URL}&limit=4&page=${page}`);
+        setMovieData(response.data.data.movies);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     movieFetch();
