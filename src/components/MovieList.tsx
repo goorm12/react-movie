@@ -19,13 +19,14 @@ const MovieList = () => {
         const response = await axios.get(`${URL}&limit=4&page=${page}`);
         setMovieData(response.data.data.movies);
       } catch (error) {
-        console.log(error);
+        if (axios.isAxiosError(error)) {
+          console.log(error.message);
+        }
       }
     };
 
     movieFetch();
   }, [page]);
-  console.log(movieData);
 
   return (
     <div className="m-auto max-w-4xl">
